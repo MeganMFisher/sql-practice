@@ -17,7 +17,17 @@ ON Invoice.CustomerId = Customer.CustomerId
 
 -- Get all customers and show me their first name, last name, and support rep first name and last name (support reps are on the Employees table)
 
+SELECT Customer.FirstName, Customer.LastName, Employee.FirstName, Employee.LastName
+FROM Employee
+JOIN Customer
+ON Customer.SupportRepId = Employee.EmployeeId
+
 -- Get all Albums and show me the album title and the artist name
+
+SELECT Album.Title, Artist.Name
+FROM Album
+JOIN Artist
+ON Album.ArtistId = Artist.ArtistId
 
 -- Get all Playlist Tracks where the playlist name is Music
 
