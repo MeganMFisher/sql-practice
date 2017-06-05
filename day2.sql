@@ -37,6 +37,11 @@ ON Album.ArtistId = Artist.ArtistId
 
 -- Get all Tracks that are alternative and show me the track name and the album name (2 joins)
 
+SELECT Album.Title, Track.name, Genre.name 
+FROM Track
+join Album ON Track.AlbumId = Album.AlbumId
+join Genre ON Track.GenreID = Genre.GenreId
+where genre.name = 'Alternative'
 
 
 -- PRACTICE NESTED QUERIES
