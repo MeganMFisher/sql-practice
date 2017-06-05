@@ -129,14 +129,35 @@ WHERE Track.GenreId
 
 -- Find a count of how many tracks there are per genre
 
+SELECT Genre.Name, count(*)
+FROM Track
+JOIN Genre
+ON Track.GenreId = Genre.GenreId
+GROUP BY Genre.Name;
+
 -- Find a count of all Tracks where the Genre is pop
 
+-- SELECT Genre.Name, count(*)
+-- FROM Track
+-- JOIN Genre
+-- ON Track.GenreId = Genre.GenreId
+-- -- GROUP BY Genre.Name = 'Pop'
+
 -- Find a list of all artist and how many albums they have
+
+SELECT Artist.Name, count(*)
+FROM Artist
+JOIN Album
+ON Artist.ArtistId = Album.ArtistId
+GROUP BY Artist.Name
 
 
 -- USE DISTINCT
 
 -- From the tracks table find a unique list of all composers
+
+SELECT DISTINCT Composer
+FROM Track
 
 -- From the Invoice table find a unique list of all Billing postal codes
 
