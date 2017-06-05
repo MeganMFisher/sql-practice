@@ -33,14 +33,25 @@ ON Album.ArtistId = Artist.ArtistId
 
 -- Get all Tracknames for playlistId 5
 
+
+
 -- Now we want all tracknames and the playlist name that they're on (You'll have to use 2 joins)
+
+SELECT Playlist.name, Track.name 
+FROM Playlist
+join PlayListTrack 
+ON Playlist.PlaylistId = PlaylistTrack.PlaylistId
+join Track 
+ON PlaylistTrack.TrackID = Track.TrackId
 
 -- Get all Tracks that are alternative and show me the track name and the album name (2 joins)
 
 SELECT Album.Title, Track.name, Genre.name 
 FROM Track
-join Album ON Track.AlbumId = Album.AlbumId
-join Genre ON Track.GenreID = Genre.GenreId
+join Album 
+ON Track.AlbumId = Album.AlbumId
+join Genre 
+ON Track.GenreID = Genre.GenreId
 where genre.name = 'Alternative'
 
 
@@ -50,11 +61,28 @@ where genre.name = 'Alternative'
 
 -- Get all Playlist Tracks where the playlist name is Music
 
+SELECT *
+FROM PlaylistTrack
+WHERE PlaylistID in 
+(SELECT PlaylistID FROM Playlist WHERE Playlist.Name = 'Music')
+
 -- Get all Tracknames for playlistId 5
+
+
 
 -- Get all tracks where the genre is comedy
 
+SELECT Track.name
+FROM Track
+WHERE Track.GenreID in 
+(SELECT Genre.GenreId FROM Genre WHERE Genre.name = 'Comedy')
+
 -- Get all tracks where the album is Fireball
+
+SELECT Track.name
+FROM Track
+WHERE Track.AlbumID in 
+(SELECT Album.AlbumId FROM Album WHERE Album.Title = 'Fireball')
 
 -- Get all tracks for the artist queen Queen (2 nested subqueries)
 
@@ -65,14 +93,36 @@ where genre.name = 'Alternative'
 
 -- Find all customers with fax numbers and set those numbers to null
 
+UPDATE Customer
+SET fax = null;
+
 -- Find all customers with no company (null) and set their company to self
+
+UPDATE Customer
+SET Company = 'self'
+where Company is null;
+
 
 -- Find the customer Julia Barnett and change her last name to Thompson
 
+UPDATE Customer
+SET LastName = 'Thompson'
+where FirstName = 'Julia' and LastName = 'Barnett';
+
 -- Find the customer with this email luisrojas@yahoo.cl and change his support rep to rep 4
+
+UPDATE Customer
+SET SupportRepId = 4
+where Email = 'luisrojas@yahoo.cl';
 
 -- Find all tracks that are of the genre Metal and that have no composer and set the composer to be 'The darkness around us'
 
+SET Composer = 'The darkness around us'
+WHERE Track.GenreId
+	IN(SELECT Genre.GenreId
+       FROM Genre
+       WHERE Track.GenreId = Genre.GenreId AND Genre.name = 'Metal')
+		AND Composer IS null
 
 -- GROUP BY
 
