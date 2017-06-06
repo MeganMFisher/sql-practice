@@ -69,6 +69,11 @@ where genre.name = 'Alternative'
 
 -- Get all invoices where the unit price on the invoice line is greater than $0.99
 
+SELECT *
+FROM Invoice
+WHERE InvoiceId in
+(SELECT InvoiceId FROM InvoiceLine WHERE InvoiceLine.UnitPrice > .99)
+
 -- Get all Playlist Tracks where the playlist name is Music
 
 SELECT *
@@ -78,6 +83,10 @@ WHERE PlaylistID in
 
 -- Get all Tracknames for playlistId 5
 
+SELECT *
+FROM Track
+WHERE TrackId in 
+(SELECT TrackId FROM PlaylistTrack WHERE PlaylistTrack.PlaylistId = 5)
 
 
 -- Get all tracks where the genre is comedy
@@ -133,6 +142,8 @@ WHERE Track.GenreId
        FROM Genre
        WHERE Track.GenreId = Genre.GenreId AND Genre.name = 'Metal')
 		AND Composer IS null
+
+        
 
 -- GROUP BY
 
