@@ -105,6 +105,13 @@ WHERE Track.AlbumID in
 
 -- Get all tracks for the artist queen Queen (2 nested subqueries)
 
+SELECT *
+FROM Track
+WHERE Track.AlbumID in 
+(SELECT Album.AlbumId FROM Album
+WHERE Album.ArtistId in
+(SELECT Artist.ArtistId FROM Artist 
+ WHERE Artist.Name = 'Queen'));
 
 
 -- PRACTICE UPDATING ROWS
@@ -158,11 +165,12 @@ GROUP BY Genre.Name;
 
 -- Find a count of all Tracks where the Genre is pop
 
--- SELECT Genre.Name, count(*)
--- FROM Track
--- JOIN Genre
--- ON Track.GenreId = Genre.GenreId
--- -- GROUP BY Genre.Name = 'Pop'
+SELECT Genre.Name, count(*)
+FROM Track
+JOIN Genre
+ON Track.GenreId = Genre.GenreId
+WHERE Genre.Name = 'Pop'
+GROUP BY Genre.Name
 
 -- Find a list of all artist and how many albums they have
 
@@ -197,9 +205,14 @@ FROM Customer
 -- Remove all pop tracks from the tracks table
 
 
+
 -- Remove all tracks by Santana
 
+
+
 -- Remove all of the rest of the tracks, yes all of them.
+
+
 
 
 -- ECOMMERCE SIMULATION
