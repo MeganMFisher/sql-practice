@@ -143,7 +143,7 @@ WHERE Track.GenreId
        WHERE Track.GenreId = Genre.GenreId AND Genre.name = 'Metal')
 		AND Composer IS null
 
-        
+
 
 -- GROUP BY
 
@@ -195,6 +195,7 @@ FROM Customer
 -- DELETE ROWS
 
 -- Remove all pop tracks from the tracks table
+
 
 -- Remove all tracks by Santana
 
