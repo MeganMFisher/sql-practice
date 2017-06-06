@@ -204,14 +204,23 @@ FROM Customer
 
 -- Remove all pop tracks from the tracks table
 
-
+-- DELETE FROM Tracks
+-- JOIN Genre
+-- ON Track.GenreId = Genre.GenreId
+-- WHERE Genre.Name = 'Pop'
 
 -- Remove all tracks by Santana
 
-
+-- DELETE FROM Track
+-- join Album 
+-- ON Track.AlbumId = Album.AlbumId
+-- join Artist
+-- ON Album.ArtistID = Artist.ArtistId
+-- where Artist.Name = 'Santana'
 
 -- Remove all of the rest of the tracks, yes all of them.
 
+DELETE FROM Track
 
 
 
@@ -221,13 +230,48 @@ FROM Customer
 -- Users need a name and an email. Products need a name and a price Orders need a ref to product. All 3 need primary keys.
 -- Add some data to fill up each table (write down your schema since you won't see it on the side). You'll need to insert products before you can link them.
 -- Add 2 users, multiple products and multiple orders.
+
+CREATE TABLE users (
+  	id INTEGER PRIMARY KEY AUTOINCREMENT,  
+  	name VARCHAR(150),
+  	email VARCHAR(150)
+  )
+
+INSERT INTO users(name, email)
+VALUES('Megan', 'Megan@gmail.com'), ('Sara', 'Sara@gmail.com')
+
+CREATE TABLE products (
+  	id INTEGER PRIMARY KEY AUTOINCREMENT, 
+  	name VARCHAR(150),
+  	price INTEGER
+  )
+
+INSERT INTO products(name, price)
+VALUES('Shoes', 12), ('Socks', 10), ('Shirt', 20), ('Pants', 30)
+
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    product_id INTEGER REFERENCES products(id)
+)
+
+INSERT INTO orders(product_id)
+VALUES(1), (2), (3), (4)
+
+
+
 -- Run some queries against your data:
 
 -- Get all products for the first order
 
+
+
 -- Get all orders
 
+
+
 -- Get the total cost of an order (sum the price of all products on an order)
+
+
 
 
 -- ADD FOREIGN KEY TO EXISTING TABLE: 
@@ -239,6 +283,10 @@ FROM Customer
 
 -- Get all orders for a user
 
+
+
 -- Get how many orders each user has
+
+
 
 -- Black Diamond: Get the total spend on all orders for each user
