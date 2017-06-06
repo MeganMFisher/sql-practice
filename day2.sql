@@ -31,9 +31,19 @@ ON Album.ArtistId = Artist.ArtistId
 
 -- Get all Playlist Tracks where the playlist name is Music
 
+SELECT *
+FROM Playlist
+JOIN PlaylistTrack
+ON Playlist.PlaylistId = PlaylistTrack.PlaylistId
+WHERE Name = 'Music'
+
 -- Get all Tracknames for playlistId 5
 
-
+SELECT *
+FROM Track
+JOIN PlaylistTrack
+ON Track.TrackId = PlaylistTrack.TrackId
+WHERE PlaylistTrack.PlaylistId = 5
 
 -- Now we want all tracknames and the playlist name that they're on (You'll have to use 2 joins)
 
@@ -161,7 +171,14 @@ FROM Track
 
 -- From the Invoice table find a unique list of all Billing postal codes
 
+SELECT DISTINCT BillingPostalCode
+FROM Invoice
+
 -- From the Customer table find a unique list of all companies
+
+SELECT DISTINCT Company
+FROM Customer
+
 
 
 -- DELETE ROWS
