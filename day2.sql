@@ -143,15 +143,13 @@ where Email = 'luisrojas@yahoo.cl';
 
 -- Find all tracks that are of the genre Metal and that have no composer and set the composer to be 'The darkness around us'
 
+UPDATE Track
 SET Composer = 'The darkness around us'
 WHERE Track.GenreId
 	IN(SELECT Genre.GenreId
        FROM Genre
        WHERE Track.GenreId = Genre.GenreId AND Genre.name = 'Metal')
 		AND Composer IS null
-
-
-
 -- GROUP BY
 
 
